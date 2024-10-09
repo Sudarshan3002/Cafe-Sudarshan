@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sudarshan Kharde Cafe - Food Website</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Style for the background video */
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            min-width: 100%;
+            min-height: 100%;
+            z-index: -1;
+            object-fit: cover;
+        }
+
+        /* Ensures content is visible over the video */
+        .content {
+            position: relative;
+            z-index: 1;
+            padding: 20px; /* Padding for content */
+        }
+
+        /* Dark overlay to make the text readable */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 0;
+        }
+
+        /* Hero section styles */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Full viewport height */
+            text-align: center; /* Center text */
+            color: white; /* Text color */
+        }
+
+        .hero h2 {
+            font-size: 2.5rem; /* Responsive font size */
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Shadow for depth */
+        }
+
+        .hero p {
+            font-size: 1.2rem; /* Responsive font size for paragraph */
+            margin-top: 10px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Shadow for depth */
+        }
+
+        /* Featured dishes styles */
+        .featured-dishes {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .dish {
+            text-align: center;
+            margin-bottom: 20px;
+            max-width: 300px; /* Limit the width of dish items */
+        }
+
+        .dish img {
+            width: 100%; /* Make image responsive */
+            height: auto;
+            cursor: pointer; /* Pointer on image hover */
+            border-radius: 10px; /* Rounded corners */
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+            width: 90%; /* Responsive width */
+            max-width: 600px; /* Limit maximum width */
+        }
+
+        .modal h2 {
+            margin-top: 0;
+        }
+
+        .modal img {
+            max-width: 100%;
+            margin: 10px 0;
+        }
+
+        .close-modal {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h2 {
+                font-size: 2rem; /* Smaller font size for mobile */
+            }
+
+            .hero p {
+                font-size: 1rem; /* Smaller font size for paragraph */
+            }
+
+            .featured-dishes {
+                padding: 10px; /* Padding for smaller screens */
+            }
+
+            .dish {
+                width: 90%; /* Full width on mobile */
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero h2 {
+                font-size: 1.5rem; /* Even smaller font size for very small screens */
+            }
+
+            .hero p {
+                font-size: 0.9rem; /* Smaller font size for paragraph */
+            }
+
+            .modal {
+                width: 95%; /* Increase modal width for very small screens */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background video -->
+    <video class="video-background" autoplay muted loop>
+        <source src="2235525_Man_Baking_3840x2160.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Dark overlay to make text more readable -->
+    <div class="overlay"></div>
+
+    <div class="content">
+        <header>
+            <h1>Sudarshan Kharde Cafe</h1>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Menu</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <section class="hero">
+            <div class="hero-text">
+                <h2>Taste the Best Dishes Around!</h2>
+                <p>We serve the finest ingredients and the tastiest dishes.</p>
+            </div>
+        </section>
+
+        <section class="featured-dishes">
+            <h2>Our Specialties</h2>
+            <div class="dish">
+                <img src="pikaso_text-to-image_Bold-inkbased-illustrations-strong-lines-and-high-.jpeg" alt="Biryani" onclick="openBiryaniModal()">
+                <h3>Biryani</h3>
+                <p>A heavenly blend of fragrant rice, succulent meat, and spices that promises a culinary adventure.</p>
+            </div>
+            <div class="dish">
+                <img src="pikaso_text-to-image_Candid-image-photography-natural-textures-highly-r (4).jpeg" alt="Chai & Coffee" onclick="openChaiCoffeeModal()">
+                <h3>Chai & Coffee</h3>
+                <p>Whether you crave the spicy warmth of chai or the bold aroma of coffee, we have the perfect brew to awaken your senses.</p>
+            </div>
+            <div class="dish">
+                <img src="pikaso_text-to-image_Candid-image-photography-natural-textures-highly-r.jpeg" alt="Chocolate Cake" onclick="openCakeModal()">
+                <h3>Chocolate Cake</h3>
+                <p>A decadent, moist chocolate cake to satisfy your sweet tooth.</p>
+            </div>
+        </section>
+
+        <!-- Biryani Modal -->
+        <div class="modal" id="biryaniModal">
+            <h2>Available Biryani Types</h2>
+            <img src="chicken-biryani.jpg" alt="Chicken Biryani">
+            <p>Chicken Biryani - A delicious blend of chicken and spices.</p>
+            <img src="mutton-biryani.jpg" alt="Mutton Biryani">
+            <p>Mutton Biryani - Rich and flavorful mutton biryani.</p>
+            <img src="veg-biryani.jpg" alt="Veg Biryani">
+            <p>Veg Biryani - A healthy mix of vegetables and spices.</p>
+            <img src="egg-biryani.jpg" alt="Egg Biryani">
+            <p>Egg Biryani - Flavored rice with perfectly cooked eggs.</p>
+            <img src="prawn-biryani.jpg" alt="Prawn Biryani">
+            <p>Prawn Biryani - Exotic flavors with prawns.</p>
+            <button class="close-modal" onclick="closeBiryaniModal()">Close</button>
+        </div>
+
+        <!-- Chai & Coffee Modal -->
+        <div class="modal" id="chaiCoffeeModal">
+            <h2>Available Chai & Coffee Types</h2>
+            <img src="chai.jpg" alt="Chai">
+            <p>Chai - A traditional Indian tea made with spices.</p>
+            <img src="coffee.jpg" alt="Coffee">
+            <p>Coffee - Freshly brewed coffee with a rich aroma.</p>
+            <button class="close-modal" onclick="closeChaiCoffeeModal()">Close</button>
+        </div>
+
+        <!-- Chocolate Cake Modal -->
+        <div class="modal" id="cakeModal">
+            <h2>Available Cake Types</h2>
+            <img src="chocolate-cake.jpg" alt="Chocolate Cake">
+            <p>Chocolate Cake - A rich and moist cake perfect for chocolate lovers.</p>
+            <img src="red-velvet-cake.jpg" alt="Red Velvet Cake">
+            <p>Red Velvet Cake - A soft and fluffy cake with cream cheese frosting.</p>
+            <button class="close-modal" onclick="closeCakeModal()">Close</button>
+        </div>
+
+        <!-- Web-to-Lead form -->
+        <section>
+            <h2>Contact Us</h2>
+            <form action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00DdM0000011NAI" method="POST">
+                <label for="first_name">First Name</label>
+                <input id="first_name" maxlength="40" name="first_name" size="20" type="text" /><br>
+                <label for="last_name">Last Name</label>
+                <input id="last_name" maxlength="80" name="last_name" size="20" type="text" /><br>
+                <label for="mobile">Mobile</label>
+                <input id="mobile" maxlength="40" name="mobile" size="20" type="text" /><br>
+                <label for="email">Email</label>
+                <input id="email" maxlength="80" name="email" size="20" type="text" /><br>
+                <label for="company">Company</label>
+                <input id="company" maxlength="40" name="company" size="20" type="text" /><br>
+                <label for="city">City</label>
+                <input id="city" maxlength="40" name="city" size="20" type="text" /><br>
+                <label for="state">State/Province</label>
+                <input id="state" maxlength="20" name="state" size="20" type="text" /><br>
+                <input type="submit" name="submit" value="Submit">
+            </form>
+        </section>
+
+        <footer>
+            <p>© 2024 Sudarshan Kharde Cafe. All Rights Reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Open and close Biryani Modal
+        function openBiryaniModal() {
+            document.getElementById('biryaniModal').style.display = 'block';
+        }
+
+        function closeBiryaniModal() {
+            document.getElementById('biryaniModal').style.display = 'none';
+        }
+
+        // Open and close Chai & Coffee Modal
+        function openChaiCoffeeModal() {
+            document.getElementById('chaiCoffeeModal').style.display = 'block';
+        }
+
+        function closeChaiCoffeeModal() {
+            document.getElementById('chaiCoffeeModal').style.display = 'none';
+        }
+
+        // Open and close Cake Modal
+        function openCakeModal() {
+            document.getElementById('cakeModal').style.display = 'block';
+        }
+
+        function closeCakeModal() {
+            document.getElementById('cakeModal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

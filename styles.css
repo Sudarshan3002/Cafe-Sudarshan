@@ -1,0 +1,112 @@
+/* Style for the background video */
+.video-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -1;
+  object-fit: cover;
+}
+
+/* Ensures content is visible over the video */
+.content {
+  position: relative;
+  z-index: 1;
+}
+
+/* Dark overlay to make the text readable */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+  z-index: 0;
+}
+
+/* Align images in the "Our Specialties" section */
+.featured-dishes {
+  display: flex;
+  flex-direction: row; /* Change to row for horizontal alignment */
+  justify-content: space-around; /* Space out the dishes */
+  flex-wrap: wrap; /* Wrap to next line if necessary */
+  padding: 20px;
+}
+
+.dish {
+  text-align: center;
+  margin: 10px; /* Adjust margin for spacing */
+  max-width: 200px; /* Limit width of each dish */
+  flex-grow: 1; /* Allow dishes to grow */
+}
+
+.dish img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px; /* Add rounded corners to images */
+}
+
+header {
+  text-align: center;
+  margin: 20px 0;
+  color: white; /* Change text color for better visibility */
+}
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin: 0 15px;
+}
+
+nav ul li a {
+  color: white; /* Change link color */
+  text-decoration: none;
+}
+
+footer {
+  text-align: center;
+  color: white; /* Change text color for footer */
+  margin: 20px 0;
+}
+
+/* Additional styles for forms */
+form {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+form label {
+  display: block;
+  margin: 10px 0 5px;
+}
+
+form input[type="text"],
+form input[type="email"] {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+form input[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+form input[type="submit"]:hover {
+  background-color: #45a049; /* Darker green on hover */
+}
